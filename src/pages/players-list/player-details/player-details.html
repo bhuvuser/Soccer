@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Player Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!editMode">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="./assets/imgs/player.png">
+      </ion-avatar>
+      <h1 text-capitalize>{{player.name}}</h1>
+      <p text-capitalize>{{player.company}}</p>
+      <p style="color: green">{{player.playerStatus}}</p>
+    </ion-item>
+    <div class="spacer" style="height: 20px;"></div>
+    <img src="./assets/imgs/player.png" style="height: 200px; width: 200px;" text-center>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="football" item-start></ion-icon>
+          <p>ID:</p> {{player.id}}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="call" item-start></ion-icon>
+          <p>Mobile:</p> {{player.mobile}}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="mail" item-start></ion-icon>
+          <p>Email:</p> {{player.email}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [ngClass]="editMode === true? 'editMode' : ''" *ngIf="editMode">
+    <form (ngSubmit)="onSave(f)" #f="ngForm">
+      <div class="spacer" style="height: 10px;"></div>
+      <img src="./assets/imgs/player.png" style="height: 125px; width: 125px;" text-center>
+      <div class="spacer" style="height: 10px;"></div>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-icon name="football" item-start></ion-icon>
+            <p>ID:</p> {{player.id}}
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="mail" item-start></ion-icon>
+            <p>Email:</p> {{player.email}}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+
+      <ion-input type="hidden" [ngModel]="player.email" name="email"></ion-input>
+
+      <ion-item>
+        <ion-label color="#666" stacked>Name</ion-label>
+        <ion-input [ngModel]="player.name" name="name" placeholder="Player's name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="#666" stacked>Company/ Club</ion-label>
+        <ion-input [ngModel]="player.company" name="company" placeholder="Company or Club" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="#666" stacked>Mobile</ion-label>
+        <ion-input [ngModel]="player.mobile" name="mobile" placeholder="Mobile" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="#666" stacked>Password</ion-label>
+        <ion-input ngModel type="password" placeholder="Password" name="password" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button large type="submit" color="mybutton" full>SAVE</button>
+        <div class="spacer" style="height: 10px;"></div>
+      </ion-item>
+    </form>
+  </ion-card>
+</ion-content>

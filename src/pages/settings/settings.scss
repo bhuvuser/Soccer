@@ -1,0 +1,19 @@
+page-settings {
+    ion-content, ion-label, ion-list, ion-list-header, ion-item, ion-input {
+        background-color: #00c0d7 !important;
+    }
+
+    ion-content img {
+        width: auto;
+        margin: auto;
+        display: block;
+    }
+
+    ion-list-header {
+        color: $mybutton !important;
+    }
+
+    ion-list-header h3 {
+        font-size: 1.8rem !important;
+    }
+}

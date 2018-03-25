@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+      <ion-title>
+        Settings
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button color="danger" (click)="logOut();">Logout</button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <img src="./assets/imgs/player.png" alt="player photo">
+  <p class="spacer"></p>
+  <ion-list radio-group>
+    <ion-list-header>
+      <h3 text-center>Available for soccer today?</h3>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>IN</ion-label>
+      <ion-radio value="in" (ionSelect)="setStatus('in')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>MAY BE</ion-label>
+      <ion-radio value="maybe" (ionSelect)="setStatus('maybe')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>OUT</ion-label>
+      <ion-radio value="out" (ionSelect)="setStatus('out')"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <button ion-button color="mybutton" full (click)="getSetNotifyCounts()">NOTIFY ALL</button>
+</ion-content>

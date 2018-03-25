@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>New Registration</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <ion-item>
+        <ion-label color="mybutton" stacked>Name</ion-label>
+        <ion-input type="text" placeholder="" ngModel name="name" text-capitalize></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label color="mybutton" stacked>Email</ion-label>
+        <ion-input type="text" placeholder="" ngModel name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="mybutton" stacked>Mobile</ion-label>
+        <ion-input type="text" placeholder="" ngModel name="mobile"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label color="mybutton" stacked>Club/ Company</ion-label>
+        <ion-input type="text" placeholder="" ngModel name="company" text-capitalize></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="mybutton" stacked>Profile Image</ion-label>
+        <ion-input type="file" placeholder="" ngModel name="image"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label color="mybutton" stacked>Password</ion-label>
+        <ion-input type="password" placeholder="" ngModel name="password"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label color="mybutton" stacked>Confirm Password</ion-label>
+        <ion-input type="password"  placeholder="" #confirmPassword></ion-input>
+      </ion-item>
+  
+      <p class="spacer"></p>
+      <button ion-button type="submit" color="mybutton" full>REGISTER</button>
+    </form>
+    <button ion-button small (click)="goBackToLogin();" color="light" full clear>
+      Login
+    </button>
+  </ion-list>
+</ion-content>

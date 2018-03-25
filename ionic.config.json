@@ -1,0 +1,8 @@
+{
+  "name": "Soccer",
+  "app_id": "2f7085de",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

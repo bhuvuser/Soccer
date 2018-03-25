@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Players List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down" refreshingSpinner="circles" refreshingText="Loading..."></ion-refresher-content>
+  </ion-refresher>
+
+  <div full>
+    <ion-segment [(ngModel)]="playerStatus" color="mybutton">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="in">
+        In
+      </ion-segment-button>
+      <ion-segment-button value="maybe">
+        Maybe
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <br/>
+  <div [ngSwitch]="playerStatus">
+    <ion-list *ngSwitchCase="'all'">
+      <ion-item-sliding *ngFor="let player of players">
+        <ion-item *ngIf="player.playerStatus==='Active'" [navPush]="playerDetailsPage" [navParams]="player">
+          <ion-avatar item-start>
+            <img src="./assets/imgs/player.png">
+          </ion-avatar>
+          <h2 text-capitalize>{{player.name}}
+            <ion-icon color="mybutton" name="checkmark-circle" *ngIf="player.email === currentEmail"></ion-icon>
+          </h2>
+          <h3>{{player.mobile}}</h3>
+          <p [ngClass]="player.inout === true? 'in' : 'out'">{{player.inout === true ? "IN" : "OUT"}}</p>
+          <button color="mybutton" ion-button clear item-end>
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" *ngIf="canEdit(player)" [navPush]="playerDetailsPage" [navParams]='{"player": player, "editMode": true}'>
+            <ion-icon name="create"></ion-icon>
+            Edit
+          </button>
+          <button ion-button color="primary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+
+        <ion-item-options side="left" *ngIf="canDelete(player)">
+          <button ion-button color="danger" (tap)="deletePlayer(player.email)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'in'">
+      <ion-item-sliding *ngFor="let player of playersInOut">
+        <ion-item *ngIf="player.availability === 'in'" [navPush]="playerDetailsPage" [navParams]="player">
+          <ion-thumbnail item-start>
+            <img src="./assets/imgs/player.png">
+          </ion-thumbnail>
+          <h2 text-capitalize>{{player.name}}
+            <ion-icon color="mybutton" name="checkmark-circle" *ngIf="player.email === currentEmail"></ion-icon>
+          </h2>
+          <h3>{{player.mobile}}</h3>
+          <button color="mybutton" ion-button clear item-end>
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'maybe'">
+      <ion-item-sliding *ngFor="let player of playersInOut">
+        <ion-item *ngIf="player.availability === 'maybe'" [navPush]="playerDetailsPage" [navParams]="player">
+          <ion-thumbnail item-start>
+            <img src="./assets/imgs/player.png">
+          </ion-thumbnail>
+          <h2 text-capitalize>{{player.name}}
+            <ion-icon color="mybutton" name="checkmark-circle" *ngIf="player.email === currentEmail"></ion-icon>
+          </h2>
+          <h3>{{player.mobile}}</h3>
+          <button color="mybutton" ion-button clear item-end>
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>

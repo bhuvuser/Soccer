@@ -1,0 +1,21 @@
+page-player-details {
+    ion-content {
+        background-color: #00c0d7 !important;
+
+        .editMode {
+            ion-input {
+                background-color: #00c0d7;
+                color: white;
+                border-radius: 3px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        } 
+    }
+
+    ion-content img {
+        width: auto;
+        margin: auto;
+        display: block;
+    }
+}
