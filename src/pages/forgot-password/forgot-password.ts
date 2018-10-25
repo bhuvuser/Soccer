@@ -46,7 +46,7 @@ export class ForgotPasswordPage {
       (response) => {
         if(response === 1) {
           this.toastCtrl.create({
-            message: "Password sent to " +  this.tempEmail,
+            message: "Password  sent to " +  this.tempEmail,
             duration: 1500
           }).present();
         }
